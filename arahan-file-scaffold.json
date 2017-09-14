@@ -5,7 +5,7 @@
       "basicpath": "src/main/java/com/arahansa",
       "packageprefix": "com.arahansa.",
       "lowercase":false,
-
+      "removestrings" : ["@formatter:off", "@formatter:on"],
       "files":[
         {"name":"", "dest":"/domain", "source" :"Domain.java" , "prop":"domain"},
         {"name":"Controller", "dest":"/controller", "source" :"Controller.java", "prop":"controller"},

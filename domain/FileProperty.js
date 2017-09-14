@@ -37,11 +37,15 @@ class FileProperty{
 
 
     // {{ }} template
-    keyValueProp(){
-        return {
-            "key" : "{{"+ this.prop +"}}",
-            "value" : util.getPackageNameByPath(this.destDir(), this.packageprefix) + "."+ this.resolveFileName() + ";"
-        }
+    setKeyValueProperties(array){
+        array.push({
+            "key" : "{{"+ this.prop +"_package}}",
+            "value" : util.getPackageNameByPath(this.destDir(), this.packageprefix) + "."+ this.resolveFileName()
+        });
+        array.push({
+            "key" : "{{"+ this.prop +"_name}}",
+            "value" : this.resolveFileName()
+        });
     }
 
     resolveFileName(){

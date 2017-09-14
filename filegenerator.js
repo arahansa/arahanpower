@@ -25,8 +25,14 @@ fs.mkdirParent = (dirPath, mode, callback) => {
 exports.analysisProp = (domainName, prop) => {
 
     var filePropList = []
-    var replaceProperties = [];
+    var replaceProperties = []; // global share in a loop
 
+    // remove strings replacement
+    if(prop.removestrings){
+        for(var s of prop.removestrings){
+            replaceProperties.push({"key":s,"value":""});
+        }
+    }
 
     // convert file json => file Object
     for(var f of prop.files){
@@ -35,15 +41,17 @@ exports.analysisProp = (domainName, prop) => {
         filePropList.push(fileProperty);
 
         if(prop.packageprefix && f.prop){
-            replaceProperties.push(fileProperty.keyValueProp());
+            fileProperty.setKeyValueProperties(replaceProperties);
         }
     }
 
-
-    // iterate file List & copy file
+    // iterate file List & copy file ( source -> dest )
     for(var f of filePropList){
 
+        // replace variables copied..
         var replacePropertiesCopied = replaceProperties.slice();
+
+        // add current package variable
         if(prop.packageprefix){
             replacePropertiesCopied.push({
                 "key":"{{package}}",
@@ -51,6 +59,7 @@ exports.analysisProp = (domainName, prop) => {
             });
         }
 
+        // copy
         exports.copySource2Dest(
             f.sourceFilePath(),
             f.destFilePath(),

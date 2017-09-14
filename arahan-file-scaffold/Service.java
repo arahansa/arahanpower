@@ -1,6 +1,10 @@
-package {{package}}
+package {{package}};
 
-Service
+
+import {{controller_package}};
+
+
+Service <{{controller_name}}>
 
 
 
