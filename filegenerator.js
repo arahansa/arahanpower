@@ -95,7 +95,7 @@ exports.copySource2Dest = (sourcePath, destPath, replaceProperties)=> {
 
         var result = data;
         for(var item of replaceProperties){
-            result = result.replace(item.key, item.value);
+            result = result.replaceAll(item.key, item.value);
         }
 
         fs.stat(destDir, (err)=> {

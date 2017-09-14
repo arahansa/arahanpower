@@ -63,7 +63,9 @@ class FileProperty{
 
     // destination file path
     destFilePath(){
-        return util.concatDirectoryStr(this.file_basic_path, this.dest, this.resolveFileNameWithExt());
+        var dest = this.lowercase ? this.dest.toLowerCase() : this.dest;
+        var resolveFileNameWithExt = this.lowercase ? this.resolveFileNameWithExt().toLowerCase() : this.resolveFileNameWithExt();
+        return util.concatDirectoryStr(this.file_basic_path, dest, resolveFileNameWithExt);
     }
 
     // destination directory path
