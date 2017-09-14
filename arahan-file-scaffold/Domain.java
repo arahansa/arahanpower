@@ -1,0 +1,6 @@
+package {{package}}
+
+Domain
+
+
+

@@ -1,0 +1,28 @@
+{
+  "default": [
+    {
+      "type" : "java",
+      "basicpath": "src/main/java/com/arahansa",
+      "packageprefix": "com.arahansa.",
+      "lowercase":false,
+
+      "files":[
+        {"name":"", "dest":"/domain", "source" :"Domain.java" , "prop":"domain"},
+        {"name":"Controller", "dest":"/controller", "source" :"Controller.java", "prop":"controller"},
+        {"name":"Service", "dest":"/service", "source" :"Service.java", "prop":"service"},
+        {"name":"Repository", "dest":"/repository", "source":"Repository.java", "prop":"repository"}
+      ]
+    },
+    {
+      "type" : "template",
+      "basicpath": "src/main/resources/templates/",
+      "lowercase":true,
+      "suffixFolder" : true,
+      "files":[
+        {"name":"{{domain}}_add", "dest":"/{{domain}}", "source":"add.html"},
+        {"name":"{{domain}}_edit", "dest":"/{{domain}}", "source":"edit.html"},
+        {"name":"{{domain}}_main", "dest":"/{{domain}}", "source":"main.html"}
+      ]
+    }
+  ]
+}
