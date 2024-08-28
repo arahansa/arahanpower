@@ -6,6 +6,10 @@ var util  = require('../util');
 
 const path = require('path');
 
+
+/**
+ * 속성은 domain :: -d 옵션으로 받은 domain Name
+ */
 class FileProperty{
 
     constructor(obj, domainName, basicpath, lowercase, packageprefix){
@@ -15,12 +19,14 @@ class FileProperty{
         this.dest = '';
         this.source = '';
         this.prop = '';
+        this.ext = '';
 
         this.lowercase = lowercase;
         this.domainName4File = (!lowercase) ? util.capitalizeFirstLetter(domainName) : domainName;
         this.packageprefix = packageprefix;
 
 
+        // 기존의 파일속성들을 이곳에 복사처리 함.
         for (var p in obj){
             if(p=="dest" || p=="name"){
                 this[p] = obj[p].replaceAll("{{domain}}", domainName);
@@ -53,7 +59,7 @@ class FileProperty{
     }
 
     resolveFileNameWithExt(){
-        return this.resolveFileName() + "." + util.getExtension(this.source);
+        return this.resolveFileName() + "." + this.ext ? this.ext : util.getExtension(this.source);
     }
 
     // source file path

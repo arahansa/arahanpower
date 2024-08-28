@@ -23,7 +23,7 @@ var profile = commander.profile ? commander.profile : 'default';
 console.log("profile :", profile, ", domain  :" ,commander.domain);
 console.log("------");
 
-var configJson = configFileReader.readConfigFile();
+const configJson = configFileReader.readConfigFile();
 
 for(var f of configJson[profile]){
     fileGenerator.analysisProp(commander.domain, f);

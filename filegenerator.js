@@ -22,6 +22,11 @@ fs.mkdirParent = (dirPath, mode, callback) => {
     });
 };
 
+/**
+ * 실제 복사되는 부분
+ * @param domainName
+ * @param prop
+ */
 exports.analysisProp = (domainName, prop) => {
 
     var filePropList = []
@@ -35,21 +40,21 @@ exports.analysisProp = (domainName, prop) => {
     }
 
     // convert file json => file Object
-    for(var f of prop.files){
+    for(const file of prop.files){
 
-        var fileProperty = new FileProperty.FileProperty(f, domainName,  prop.basicpath, prop.lowercase, prop.packageprefix);
+        var fileProperty = new FileProperty.FileProperty(file, domainName,  prop.basicpath, prop.lowercase, prop.packageprefix);
         filePropList.push(fileProperty);
 
-        if(prop.packageprefix && f.prop){
+        if(prop.packageprefix && file.prop){
             fileProperty.setKeyValueProperties(replaceProperties);
         }
     }
 
     // iterate file List & copy file ( source -> dest )
-    for(var f of filePropList){
+    for(const f of filePropList){
 
         // replace variables copied..
-        var replacePropertiesCopied = replaceProperties.slice();
+        const replacePropertiesCopied = replaceProperties.slice();
 
         // add current package variable
         if(prop.packageprefix){
@@ -58,6 +63,10 @@ exports.analysisProp = (domainName, prop) => {
                 "value":util.getPackageNameByPath(f.destDir(), prop.packageprefix)+";"
             });
         }
+        replacePropertiesCopied.push({
+            "key":"{{domain_lower}}",
+            value: domainName.toLowerCase()
+        })
 
         // copy
         exports.copySource2Dest(
@@ -75,7 +84,7 @@ exports.copySource2Dest = (sourcePath, destPath, replaceProperties)=> {
     console.log("copying.. from : "+sourcePath);
     console.log("to :"+destPath);
 
-    var destDir = path.dirname(destPath);
+    const destDir = path.dirname(destPath);
 
 
     var writeFile = (destPath, result) => {

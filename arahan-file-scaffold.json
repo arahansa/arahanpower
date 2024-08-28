@@ -7,7 +7,7 @@
       "lowercase":false,
       "removestrings" : ["@formatter:off", "@formatter:on"],
       "files":[
-        {"name":"", "dest":"/domain", "source" :"Domain.java" , "prop":"domain"},
+        {"name":"", "dest":"/domain", "source" :"Domain.java", "ext" : "kt", "prop":"domain"},
         {"name":"Controller", "dest":"/controller", "source" :"Controller.java", "prop":"controller"},
         {"name":"Service", "dest":"/service", "source" :"Service.java", "prop":"service"},
         {"name":"Repository", "dest":"/repository", "source":"Repository.java", "prop":"repository"}
