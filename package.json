@@ -1,6 +1,6 @@
 {
   "name": "arahanpower",
-  "version": "1.0.16",
+  "version": "1.0.19",
   "description": "source scaffolding node.js module",
   "main": "index.js",
   "scripts": {
